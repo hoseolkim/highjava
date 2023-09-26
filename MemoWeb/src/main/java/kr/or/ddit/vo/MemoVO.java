@@ -1,0 +1,17 @@
+package kr.or.ddit.vo;
+
+import java.io.Serializable;
+import java.time.LocalDate;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(of = "code")
+public class MemoVO implements Serializable{
+	private Integer code;
+	private String writer;
+	private String email;
+	private LocalDate wrdate;
+	private String content;
+}

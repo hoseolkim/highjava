@@ -37,11 +37,11 @@ public class MemoServiceImpl implements MemoService {
 
 	@Override
 	public ServiceResult removeMemo(MemoVO memoVO) {
-		ServiceResult result = authService.authMemo(memoVO);
+		ServiceResult result = null;
 		int rowcnt = -1;
-		if(result.equals(ServiceResult.OK)){
-			rowcnt = dao.deleteMemo(memoVO.getCode());
-		}
+//		if(result.equals(ServiceResult.OK)){
+//		}
+		rowcnt = dao.deleteMemo(memoVO.getCode());
 		
 		if(rowcnt >= 1) {
 			result = ServiceResult.OK;
@@ -54,12 +54,13 @@ public class MemoServiceImpl implements MemoService {
 
 	@Override
 	public ServiceResult modifyMemo(MemoVO memoVO) {
-		ServiceResult result = authService.authMemo(memoVO);
+		ServiceResult result = null;
 		int rowcnt = -1;
+		rowcnt = dao.updateMemo(memoVO);
+		/*
 		if(result.equals(ServiceResult.OK)){
-			rowcnt = dao.updateMemo(memoVO);
 		}
-		
+		*/
 		if(rowcnt >= 1) {
 			result = ServiceResult.OK;
 		}else if(rowcnt != -1) {

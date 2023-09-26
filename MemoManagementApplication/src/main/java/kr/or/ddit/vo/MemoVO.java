@@ -17,7 +17,6 @@ import lombok.ToString;
 public class MemoVO implements Serializable{
 	private Integer code;
 	private String writer;
-	@JsonIgnore
 	@ToStringExclude
 	private String email;
 	private LocalDate wrdate;

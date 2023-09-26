@@ -15,33 +15,47 @@ import kr.or.ddit.vo.DataBasePropertyVO;
 
 @WebServlet("/13/case2/jdbcDesc.do")
 public class DataBasePropertiesControllerServlet_case2 extends HttpServlet{
+//	1. 의존관계 형성
+	private DataBasePropertyService service = new DataBasePropertyServiceImpl();
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		2. 사용자의 요청이 어떤 컨텐츠에 대한 요청인지 식별(Accept 헤더 활용)
+		String accept = req.getHeader("Accept");
+		String goPage;
 		
-//		1. 요청의 헤더에서 accept를 꺼낸다
-		String accept = req.getHeader("accept");
-		String goPage = "/WEB-INF/13/jdbcDescCase2.jsp";
-//		2-1. accept에 json이 있는 경우
 		if(accept.contains("json")) {
-//			3-1. service에서 데이터를 받아온다
-			DataBasePropertyService service = new DataBasePropertyServiceImpl();
+//			- data 요청
 			List<DataBasePropertyVO> list = service.retrieveDBPropertyList();
-//			4-1. 받아온 데이터를 그대로 jsonview로 전달한다.
-			req.setAttribute("list", list);
-//			5-1. goPage를 json view로 선택한다
+			req.setAttribute("dataList", list);
 			goPage = "/jsonView.view";
+		}else {
+//			- UI 요청
+			goPage = "/WEB-INF/views/13/jdbcDescCase2.jsp"; // HTML
 		}
 		
-//		2-2. accept에 json이 없는 경우
-	//		3-1 원래 페이지로 포워딩한다
-		
-//		이동한당..
 		if(goPage.startsWith("redirect:")) {
 			String location = req.getContextPath() + goPage.substring("redirect:".length());
 			resp.sendRedirect(location);
 		}else {
 			req.getRequestDispatcher(goPage).forward(req, resp);
 		}
-		
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

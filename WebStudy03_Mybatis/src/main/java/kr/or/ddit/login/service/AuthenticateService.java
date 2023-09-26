@@ -7,6 +7,5 @@ import kr.or.ddit.vo.MemberVO;
  *
  */
 public interface AuthenticateService {
-	
 	public boolean authenticate(MemberVO inputData);
 }

@@ -9,24 +9,23 @@ import kr.or.ddit.db.CustomSqlSessionFactoryBuilder;
 import kr.or.ddit.vo.AddressVO;
 
 public class AddressDAOImpl implements AddressDAO {
-	private SqlSessionFactory sqlSessionFactory = CustomSqlSessionFactoryBuilder.getSqlSessionFactory();
-	
-	
+	private SqlSessionFactory sqlSessionFactory =
+			CustomSqlSessionFactoryBuilder.getSqlSessionFactory();
+
 	@Override
 	public int insertAddress(AddressVO adrsVO) {
 		try(
-			SqlSession sqlSession = sqlSessionFactory.openSession(true);
+			SqlSession sqlSession = sqlSessionFactory.openSession(true);	
 		){
 			AddressDAO mapperProxy = sqlSession.getMapper(AddressDAO.class);
 			return mapperProxy.insertAddress(adrsVO);
-//			return sqlSession.insert("kr.or.ddit.adrs.dao.AddressDAO.insertAddress", adrsVO);
 		}
 	}
 
 	@Override
 	public List<AddressVO> selectAddressList(String memId) {
 		try(
-			SqlSession sqlSession = sqlSessionFactory.openSession();
+			SqlSession sqlSession = sqlSessionFactory.openSession();	
 		){
 //			return sqlSession.selectList("kr.or.ddit.adrs.dao.AddressDAO.selectAddressList", memId);
 			AddressDAO mapperProxy = sqlSession.getMapper(AddressDAO.class);
@@ -37,25 +36,37 @@ public class AddressDAOImpl implements AddressDAO {
 	@Override
 	public int updateAddress(AddressVO adrsVO) {
 		try(
-			SqlSession sqlSession = sqlSessionFactory.openSession(true);
+			SqlSession sqlSession = sqlSessionFactory.openSession(true);	
 		){
 			AddressDAO mapperProxy = sqlSession.getMapper(AddressDAO.class);
 			return mapperProxy.updateAddress(adrsVO);
-//			return sqlSession.update("kr.or.ddit.adrs.dao.AddressDAO.updateAddress",adrsVO);
 		}
 	}
 
 	@Override
 	public int deleteAddress(int adrsNo) {
 		try(
-			SqlSession sqlSession = sqlSessionFactory.openSession();
+				SqlSession sqlSession = sqlSessionFactory.openSession();	
 		){
 			AddressDAO mapperProxy = sqlSession.getMapper(AddressDAO.class);
 			int rowcnt = mapperProxy.deleteAddress(adrsNo);
 			sqlSession.commit();
 			return rowcnt;
-//			return sqlSession.delete("kr.or.ddit.adrs.dao.AddressDAO.deleteAddress", adrsNo);
 		}
 	}
-
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

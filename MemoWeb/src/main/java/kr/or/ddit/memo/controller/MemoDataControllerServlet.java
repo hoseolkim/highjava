@@ -1,0 +1,153 @@
+package kr.or.ddit.memo.controller;
+
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.ServletInputStream;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import kr.or.ddit.common.enumpkg.ServiceResult;
+import kr.or.ddit.memo.service.MemoService;
+import kr.or.ddit.memo.service.MemoServiceImpl;
+import kr.or.ddit.vo.MemoVO;
+
+@WebServlet({"/memo","/memo/*"})
+public class MemoDataControllerServlet extends HttpServlet{
+	MemoService service = new MemoServiceImpl();
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		List<MemoVO> list = service.retrieveMemoList();
+		req.setAttribute("memoList", list);
+		String goPage = "/jsonView.view";
+		if(goPage.startsWith("redirect:")) {
+			String location = req.getContextPath() + goPage.substring("redirect:".length());
+			resp.sendRedirect(location);
+		}else {
+			req.getRequestDispatcher(goPage).forward(req, resp);
+		}
+	}
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
+		MemoVO memoVO = null;
+		boolean valid = true;
+		boolean success = false;
+		String message= null;
+		Map<String, String> errors = new HashMap<String, String>();
+		req.setAttribute("errors", errors);
+		try(
+			ServletInputStream is = req.getInputStream();
+		){
+			memoVO = new ObjectMapper().readValue(is, MemoVO.class);
+		}
+		if(valid) {
+			memoVO.setWrdate(LocalDate.now());
+			ServiceResult result = service.createMemo(memoVO);
+			if(result.equals(ServiceResult.OK)) {
+				success = true;
+			}else {
+				message = "등록 실패";
+			}
+		}// valid 할 경우 끝
+		req.setAttribute("message", message);
+		req.setAttribute("success", success);
+		req.setAttribute("originData", memoVO);
+		String goPage = "/jsonView.view";
+		if(goPage.startsWith("redirect:")) {
+			String location = req.getContextPath() + goPage.substring("redirect:".length());
+			resp.sendRedirect(location);
+		}else {
+			req.getRequestDispatcher(goPage).forward(req, resp);
+		}
+	}
+	
+	@Override
+	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
+		MemoVO memoVO = null;
+		boolean success = false;
+		String message = null;
+		try(
+			ServletInputStream is = req.getInputStream();
+		){
+			memoVO = new ObjectMapper().readValue(is, MemoVO.class);
+		}
+		
+		if(ServiceResult.OK.equals(service.modifyMemo(memoVO))){
+			success = true;
+		}else {
+			message = "수정 실패";
+		}
+		req.setAttribute("message", message);
+		req.setAttribute("success", success);
+		req.setAttribute("changeData", memoVO);
+		String goPage = "/jsonView.view";
+		if(goPage.startsWith("redirect:")) {
+			String location = req.getContextPath() + goPage.substring("redirect:".length());
+			resp.sendRedirect(location);
+		}else {
+			req.getRequestDispatcher(goPage).forward(req, resp);
+		}
+		
+	}
+	
+	@Override
+	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
+		String uri = StringUtils.substringAfter(req.getRequestURI(), req.getContextPath());
+		int lastIdx = uri.lastIndexOf("/");
+		int uriLen = uri.length();
+		int baseLen = "/memo".length();
+		boolean valid = lastIdx >= baseLen && lastIdx < uriLen - 1 ;
+		String part = uri.substring(lastIdx+1);
+		String[] parts = part.split(";");
+		int code = -1;
+		try {
+			code = Integer.parseInt(parts[0]);
+		} catch (NumberFormatException e) {
+			valid = false;
+		}
+		if(!valid) {
+			resp.sendError(400,"메모 번호가 없음.");
+			return;
+		}
+		boolean success = false;
+		String email = null;
+		if(parts.length==2) {
+			email = parts[1];
+		}else {
+			email = "";
+		}
+		String message = null;
+		MemoVO memoVO = new MemoVO();
+		memoVO.setCode(code);
+		memoVO.setEmail(email);
+		ServiceResult result = service.removeMemo(memoVO.getCode());
+		if(result.equals(ServiceResult.OK)) {
+			success = true;
+		}else {
+			message = "삭제 실패";
+		}
+		
+		req.setAttribute("message", message);
+		req.setAttribute("success", success);
+		String goPage = "/jsonView.view";
+		if(goPage.startsWith("redirect:")) {
+			String location = req.getContextPath() + goPage.substring("redirect:".length());
+			resp.sendRedirect(location);
+		}else {
+			req.getRequestDispatcher(goPage).forward(req, resp);
+		}
+	}
+}

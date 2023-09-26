@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="#{}"/>
+		<item key="selection" value="DATE"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="true"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="true"/>
 		<list key="findhistory">
+			<item value="DATE"/>
+			<item value="NUMBER"/>
+			<item value="VAR"/>
+			<item value="MEM_(\w+),"/>
 			<item value=":v\d"/>
+			<item value="pageContext\.request\.contextPath"/>
+			<item value="&lt;%=\s%&gt;"/>
 			<item value=":v\\d"/>
 			<item value="war"/>
 			<item value="case7"/>
@@ -17,15 +23,12 @@
 			<item value="case3"/>
 			<item value="case2"/>
 			<item value="case1"/>
-			<item value="war-plugin"/>
-			<item value="compile"/>
-			<item value="com"/>
-			<item value="multiple"/>
-			<item value="servlet"/>
-			<item value="jsp"/>
 		</list>
 		<list key="replacehistory">
+			<item value=", MEM_$1"/>
 			<item value="#\{\}"/>
+			<item value="cPath"/>
+			<item value="$\{\s\}"/>
 			<item value="\?"/>
 			<item value="case8"/>
 			<item value="case7"/>
@@ -38,8 +41,8 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="306"/>
-		<item key="DIALOG_Y_ORIGIN" value="618"/>
+		<item key="DIALOG_X_ORIGIN" value="592"/>
+		<item key="DIALOG_Y_ORIGIN" value="313"/>
 		<item key="DIALOG_WIDTH" value="322"/>
 		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>

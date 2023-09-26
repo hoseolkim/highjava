@@ -23,7 +23,8 @@ public class AddressServiceImpl implements AddressService {
 
 	@Override
 	public boolean modifyAddress(AddressVO adrsVO) {
-		return dao.updateAddress(adrsVO) > 0 ;
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	@Override
@@ -32,3 +33,19 @@ public class AddressServiceImpl implements AddressService {
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

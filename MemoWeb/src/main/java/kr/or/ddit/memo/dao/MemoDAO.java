@@ -1,0 +1,32 @@
+package kr.or.ddit.memo.dao;
+
+import java.util.List;
+
+import kr.or.ddit.vo.MemoVO;
+
+public interface MemoDAO {
+	
+	/**
+	 * 메모 목록 조회
+	 * @return
+	 */
+	public List<MemoVO> selectMemoList();
+	/**
+	 * 메모 추가
+	 * @param memoVO
+	 * @return 추가 성공시( >=1)
+	 */
+	public int insertMemo(MemoVO memoVO);
+	/**
+	 * 메모 수정
+	 * @param memoVO
+	 * @return 수정 성공시( >=1)
+	 */
+	public int updateMemo(MemoVO memoVO);
+	/**
+	 * 메모 삭제
+	 * @param code
+	 * @return 삭제 성공시( >=1)
+	 */
+	public int deleteMemo(int code);
+}

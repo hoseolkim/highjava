@@ -21,13 +21,14 @@ public interface MemoService {
 	 * 메모 삭제
 	 * 메모 삭제하기 전 확인작업 필요
 	 * @param memoVO
-	 * @return 이메일 다를 경우 INVALIDEMAIL, 실패 FAIL, 성공 OK
+	 * @return 실패 FAIL, 성공 OK
 	 */
 	public ServiceResult removeMemo(MemoVO memoVO);
 	/**
 	 * 메모 수정
+	 * 메모 수정하기 전 확인작업 필요
 	 * @param memoVO
-	 * @return 이메일 다를 경우 INVALIDEMAIL, 실패 FAIL, 성공 OK
+	 * @return 실패 FAIL, 성공 OK
 	 */
 	public ServiceResult modifyMemo(MemoVO memoVO);
 }

@@ -4,24 +4,25 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * Layerd Architecture(계층형 구조)
- * - 하나의 명령이 처리될 때 단계적인 객체(layer) 들이 순차적으로 동작하는 구조.
+ * Layered Architecture(계층형 구조)
+ * - 하나의 명령이 처리될때 단계적인 객체(layer) 들이 순차적으로 동작하는 구조.
  * 
  * 5 layer 구조
+ * 
  * Model layer
- *  - ValueObject : domail layer
- *  - DataAccessObject : persistence layer	--> data
- *  - service(Logic 객체) : business logic layer	--> information(model)
+ *  - ValueObject : domain layer
+ *  - DataAccessObject : persistence layer  --> data
+ *  - service(Logic 객체) : business logic layer --> information(model)
  * 
  * controller
- * view : presentation layer -- > content (Content-Type)
+ * view : presentation layer --> content (Content-Type)
+ * 
  *
  */
-public class DataBasePropertyVO implements Serializable {
+public class DataBasePropertyVO implements Serializable{
 	private String propertyName;
 	private String propertyValue;
 	private String description;
-	
 	public String getPropertyName() {
 		return propertyName;
 	}
@@ -40,12 +41,10 @@ public class DataBasePropertyVO implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
 	@Override
 	public int hashCode() {
 		return Objects.hash(propertyName, propertyValue);
 	}
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -62,7 +61,5 @@ public class DataBasePropertyVO implements Serializable {
 		return "DataBasePropertyVO [propertyName=" + propertyName + ", propertyValue=" + propertyValue
 				+ ", description=" + description + "]";
 	}
-	
-	
 	
 }

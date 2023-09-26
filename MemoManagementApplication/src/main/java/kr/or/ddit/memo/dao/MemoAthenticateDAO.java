@@ -9,4 +9,8 @@ public interface MemoAthenticateDAO {
 	 * @return 일치 시 ( >=1)
 	 */
 	public int memoAthenticate(MemoVO memovO);
+	
+	
+	
+	
 }

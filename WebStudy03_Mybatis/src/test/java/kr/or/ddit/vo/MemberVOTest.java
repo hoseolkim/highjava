@@ -28,7 +28,15 @@ class MemberVOTest {
 		
 		System.out.println(json);
 		
+	}
+	
+	@Test
+	void selfTest() {
+//		MemberVO vo = new MemberVO();
+//		vo.setMemAdd1(null);
+		
+		String target = LocalDate.now().toString();
+		System.out.println(target);
 		
 	}
-
 }

@@ -7,18 +7,16 @@ import kr.or.ddit.servlet06.dao.DataBasePropertyDAO;
 import kr.or.ddit.vo.DataBasePropertyVO;
 
 public class DataBasePropertyServiceImpl implements DataBasePropertyService {
-	
+
 	private DataBasePropertyDAO dao = new DataBasePropertyDAO();
 	
 	@Override
 	public List<DataBasePropertyVO> retrieveDBPropertyList() {
 		List<DataBasePropertyVO> list = dao.selectDBPropertyList();
-		
 		for(DataBasePropertyVO vo : list) {
 			String rawData = vo.getDescription();
 			vo.setDescription(String.format("%s, %s", rawData, LocalDateTime.now()));
 		}
-		
 		return list;
 	}
 

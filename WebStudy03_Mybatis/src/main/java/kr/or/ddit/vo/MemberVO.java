@@ -3,8 +3,6 @@ package kr.or.ddit.vo;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.EqualsAndHashCode;
@@ -17,7 +15,6 @@ import lombok.ToString;
 @EqualsAndHashCode(of = "memId")
 @ToString
 public class MemberVO implements Serializable {
-	
 	private String memId;
 	@ToString.Exclude
 	@JsonIgnore
@@ -29,7 +26,6 @@ public class MemberVO implements Serializable {
 	@ToString.Exclude
 	@JsonIgnore
 	private transient String memRegno2;
-	
 	private LocalDate memBir;
 	
 	private String memZip;
@@ -47,4 +43,22 @@ public class MemberVO implements Serializable {
 	private Integer memMileage;
 	private String memDelete;
 	private int prodCount;
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -18,31 +18,40 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 @WebServlet("/jsonView.view")
 public class JsonViewServlet extends HttpServlet{
-	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
-		String contentType = "application/json; charset=utf-8";
+		String contentType = "application/json;charset=UTF-8";
 		
 		resp.setContentType(contentType);
 		
-		Enumeration<String> attrNames =  request.getAttributeNames();
-		
-		Map<String, Object> target = new HashMap<String, Object>();
-		
+		Map<String,Object> target = new HashMap<>();
+		Enumeration<String> attrNames = request.getAttributeNames();
 		while(attrNames.hasMoreElements()){
 			String name = attrNames.nextElement();
 			Object value = request.getAttribute(name);
 			target.put(name, value);
 		}
 		
+//		Object content = new ObjectMapper().writeValueAsString(target);
 		try(
-		PrintWriter out = resp.getWriter();
+			PrintWriter out = resp.getWriter();
 		){
 			new ObjectMapper()
-			.registerModule(new JavaTimeModule())
-			.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-			.writeValue(out, target);
+				.registerModule(new JavaTimeModule())
+				.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+				.writeValue(out, target);
 		}
-		
-	}//service 메소드 끝
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+

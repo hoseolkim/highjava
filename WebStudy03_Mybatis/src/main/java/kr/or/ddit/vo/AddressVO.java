@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(of = "adrsNo")
+@EqualsAndHashCode(of="adrsNo")
 public class AddressVO implements Serializable{
 	private int adrsNo;
 	private String memId;
