@@ -1,0 +1,22 @@
+/**
+ * 
+ */
+
+$(function(){
+	
+	$('tbody>tr').on('click',function(){
+		let memId = $(this).data('memId');
+		
+		let data = {
+			"memId" : memId 
+		}
+		
+		
+		let settings = {
+			
+		}
+		
+		
+	})
+	
+})

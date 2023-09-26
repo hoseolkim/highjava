@@ -1,0 +1,17 @@
+/**
+ * 
+ */
+
+$(function(){
+	let cPath = $(document.body).data('contextPath');
+	$('tbody>tr').on('click',function(){
+		let memId = $(this).data('memId');
+		let settings = {
+			url : `${cPath}/member/memberView.do?memId\${memId}`
+			
+		}
+		
+		
+	})
+	
+})

@@ -1,0 +1,178 @@
+package kr.or.ddit.member.controller;
+
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.Temporal;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.ConvertUtils;
+import org.apache.commons.beanutils.Converter;
+import org.apache.commons.beanutils.converters.AbstractConverter;
+import org.apache.commons.lang3.StringUtils;
+
+import kr.or.ddit.common.enumpkg.ServiceResult;
+import kr.or.ddit.member.service.MemberService;
+import kr.or.ddit.member.service.MemberServiceImpl;
+import kr.or.ddit.vo.MemberVO;
+
+@WebServlet("/member/memberUpdate.do")
+public class MemberUpdateControllerServlet extends HttpServlet{
+	
+	MemberService service = new MemberServiceImpl();
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String memId = (String)req.getSession().getAttribute("authId");
+		
+		
+		
+		MemberVO member = service.retrieveMember(memId);
+		
+		if(member==null) {
+			resp.sendError(400, "잘못된 요청!!");
+			return;
+		}
+		member.setMemPass(null);
+		
+		
+		
+		
+		String goPage = "/member/memberInsert.tiles";
+		if(goPage.startsWith("redirect:")) {
+			String location = req.getContextPath() + goPage.substring("redirect:".length());
+			resp.sendRedirect(location);
+		}else {
+			req.getRequestDispatcher(goPage).forward(req, resp);
+		}
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		1. 디코딩설정..
+		req.setCharacterEncoding("utf-8");
+//		2. 파라미터꺼냄..
+		Map<String, String[]> paramerterMap = req.getParameterMap();
+//		3. VO로 만든다..
+		MemberVO member = new MemberVO();
+		String message = null;
+//		4. 검증(회원가입과 동일한 검증+아이디안바뀐거검사)
+		req.setAttribute("member", member);
+		Converter converter = new AbstractConverter() {
+			
+			@Override
+			protected Class<?> getDefaultType() {
+				return Temporal.class;
+			}
+			
+			@Override
+			protected <T> T convertToType(Class<T> type, Object paramValue) throws Throwable {
+				String text = (String)paramValue;
+				if(StringUtils.isNotBlank(text)) {
+//					return LocalDate.parse((String)paramValue);
+					return (T) type.getDeclaredMethod("parse", CharSequence.class).invoke(null, text);
+				}else {
+					return null;
+				}
+			}
+		};
+		
+		ConvertUtils.register(converter, LocalDate.class);
+		ConvertUtils.register(converter, LocalDateTime.class);
+		
+		try {
+			BeanUtils.populate(member, paramerterMap);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			throw new RuntimeException(e);
+		}
+		Map<String, String > errors = new HashMap<String, String>();
+		req.setAttribute("errors", errors);
+//		3. 검증 (대상 : MemberVO)
+		boolean valid = validate(member, errors);
+		String memId = (String)req.getSession().getAttribute("authId");
+		boolean idNotChange = ! member.getMemId().equals(memId);
+		if(idNotChange) {
+			// 아이디 안바뀐것 검사
+			if(valid) {
+//			검증 성공시
+//			업데이트 처리한다
+				ServiceResult result = service.modifyMember(member);
+				
+				switch (result) {
+				case OK:
+					
+					break;
+
+				default:
+					break;
+				}
+				
+				
+				
+				
+			}else {
+				
+			}
+			
+		}else {
+			
+		}
+		
+//				업데이트 성공시
+//					로그아웃 처리를 하고 로그인폼으로 보낸다
+//				업데이트 실패시
+//					실패 + 메시지를 전달 + 기본값 전달
+//			검증 실패시
+//			실패 + 메시지 전달 + 기본값 전달
+		
+		
+		
+	}
+	
+	
+	
+	private boolean validate(MemberVO member, Map<String, String> errors) {
+		boolean valid = true;
+		
+		if (StringUtils.isBlank(member.getMemId())) {
+			valid = false;
+			errors.put("memId", "회원아이디누락");
+		}
+		if (StringUtils.isBlank(member.getMemPass())) {
+			valid = false;
+			errors.put("memPass", "비밀번호누락");
+		}
+		if (StringUtils.isBlank(member.getMemName())) {
+			valid = false;
+			errors.put("memName", "회원명누락");
+		}
+		if (StringUtils.isBlank(member.getMemZip())) {
+			valid = false;
+			errors.put("memZip", "우편번호누락");
+		}
+		if (StringUtils.isBlank(member.getMemAdd1())) {
+			valid = false;
+			errors.put("memAdd1", "주소1누락");
+		}
+		if (StringUtils.isBlank(member.getMemAdd2())) {
+			valid = false;
+			errors.put("memAdd2", "주소2누락");
+		}
+		if (StringUtils.isBlank(member.getMemMail())) {
+			valid = false;
+			errors.put("memMail", "이메일누락");
+		}
+		
+		return valid;
+	}
+}

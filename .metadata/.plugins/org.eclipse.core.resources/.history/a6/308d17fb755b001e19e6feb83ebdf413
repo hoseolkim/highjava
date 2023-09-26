@@ -1,0 +1,111 @@
+package kr.or.ddit.member.controller;
+
+import java.io.IOException;
+import java.time.LocalDate;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang3.StringUtils;
+
+import kr.or.ddit.vo.MemberVO;
+
+@WebServlet("/member/memberInsert.do")
+public class MemberInsertControllerServlet extends HttpServlet {
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String viewName = "/member/memberInsert.tiles";
+		req.getRequestDispatcher(viewName).forward(req, resp);
+	}
+	
+	private MemberVO validate(HttpServletRequest req) {
+		MemberVO vo = null;
+		boolean valid = true;
+		String memId = req.getParameter("memId");
+		String memPass = req.getParameter("memPass");
+		String memName = req.getParameter("memName");
+		String memRegno1 = req.getParameter("memRegno1");
+		String memRegno2 = req.getParameter("memRegno2");
+		String memBir = req.getParameter("memBir");
+		String memZip = req.getParameter("memZip");
+		String memAdd1 = req.getParameter("memAdd1");
+		String memAdd2 = req.getParameter("memAdd2");
+		String memHometel = req.getParameter("memHometel");
+		String memComtel = req.getParameter("memComtel");
+		String memHp = req.getParameter("memHp");
+		String memMail = req.getParameter("memMail");
+		String memJob = req.getParameter("memJob");
+		String memLike = req.getParameter("memLike");
+		String memMemorial = req.getParameter("memMemorial");
+		String memMemorialday = req.getParameter("memMemorialday");
+		
+		valid &= StringUtils.isNotBlank(memId);
+		valid &= StringUtils.isNotBlank(memPass);
+		valid &= StringUtils.isNotBlank(memName);
+		valid &= StringUtils.isNotBlank(memAdd1);
+		valid &= StringUtils.isNotBlank(memAdd2);
+		valid &= StringUtils.isNotBlank(memZip);
+		valid &= StringUtils.isNotBlank(memMail);
+		
+		if(valid) {
+			vo = new MemberVO();
+			vo.setMemId(memId);
+			vo.setMemPass(memPass);
+			vo.setMemName(memName);
+			vo.setMemRegno1(memRegno1);
+			vo.setMemRegno2(memRegno2);
+			if(StringUtils.isNotBlank(memBir)) {
+				String[] bir = memBir.split("-");
+				int year = Integer.parseInt(bir[0]);
+				int month = Integer.parseInt(bir[1]);
+				int day = Integer.parseInt(bir[2]);
+				vo.setMemBir(LocalDate.of(year,month,day));
+			}
+			vo.setMemZip(memZip);
+			vo.setMemAdd1(memAdd1);
+			vo.setMemAdd2(memAdd2);
+			vo.setMemHometel(memHometel);
+			vo.setMemComtel(memComtel);
+			vo.setMemHp(memHp);
+			vo.setMemMail(memMail);
+			vo.setMemJob(memJob);
+			vo.setMemLike(memLike);
+			vo.setMemMemorial(memMemorial);
+			if(StringUtils.isNotBlank(memBir)) {
+				String[] days = memMemorialday.split("-");
+				int year = Integer.parseInt(days[0]);
+				int month = Integer.parseInt(days[1]);
+				int day = Integer.parseInt(days[2]);
+				vo.setMemMemorialday(LocalDate.of(year,month,day));
+			}
+		}
+		return vo;
+	}
+	
+	
+	
+	
+	
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
+		
+		MemberVO memberVO = validate(req);
+		boolean result = false;
+		if(memberVO!=null) {
+			
+		}else {
+			
+		}
+		
+		
+		
+		
+		
+//		/member/memberInsert
+	}
+}

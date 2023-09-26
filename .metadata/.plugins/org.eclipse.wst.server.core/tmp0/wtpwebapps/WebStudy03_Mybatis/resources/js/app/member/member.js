@@ -1,0 +1,18 @@
+/**
+ * 
+ */
+
+$(function(){
+	let cPath = $(document.body).data('contextPath');
+	$('tbody>tr').on('click',function(){
+		let memId = $(this).data('memId');
+		$.ajax(`${cPath}/member/memberView.do?memId=${memId}`)
+			.done((resp)=>{
+				$(memberDetailModal).modal('show');
+				$(memberDetailArea).html(resp);
+			});
+		
+		
+	})
+	
+})

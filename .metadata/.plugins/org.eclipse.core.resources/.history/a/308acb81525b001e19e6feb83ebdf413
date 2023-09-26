@@ -1,0 +1,33 @@
+package kr.or.ddit.servlet06.dao;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
+import kr.or.ddit.db.CustomSqlSessionFactoryBuilder;
+import kr.or.ddit.member.dao.MemberDAO;
+import kr.or.ddit.vo.DataBasePropertyVO;
+
+
+// POJO(Plain Old Java Object)
+
+public class DataBasePropertyDAO {
+	SqlSessionFactory sessionfactory = CustomSqlSessionFactoryBuilder.getSqlSessionFactory();
+	public List<DataBasePropertyVO> selectDBPropertyList(){
+		try(
+				SqlSession sqlSession = sessionfactory.openSession();
+			){
+				return sqlSession.selectList("DataBaseProperty.selectDBPropertyList");
+			}
+		
+	}
+}

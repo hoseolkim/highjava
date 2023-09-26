@@ -1,0 +1,77 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<form method="post">
+<table class="table table-border">
+		<tr>
+			<th>회원아이디</th>
+			<td><input type='text' required name='memId' value="${param.memId}" /></td>
+		</tr>
+		<tr>
+			<th>비밀번호</th>
+			<td><input type='password' required name='memPass' /></td>
+		</tr>
+		<tr>
+			<th>회원명</th>
+			<td><input type='text' required name='memName' value="${param.name}" /></td>
+		</tr>
+		<tr>
+			<th>주민번호1</th>
+			<td><input type='text' name='memRegno1' value="${param.memRegno1}" /></td>
+		</tr>
+		<tr>
+			<th>주민번호2</th>
+			<td><input type='text' name='memRegno2' value="${param.memRegno2}" /></td>
+		</tr>
+		<tr>
+			<th>생일</th>
+			<td><input type='date' name='memBir' /></td>
+		</tr>
+		<tr>
+			<th>우편번호</th>
+			<td><input type='text' required name='memZip' value="${param.memZip}"/></td>
+		</tr>
+		<tr>
+			<th>주소1</th>
+			<td><input type='text' required name='memAdd1' value="${param.memAdd1}"/></td>
+		</tr>
+		<tr>
+			<th>주소2</th>
+			<td><input type='text' required name='memAdd2'value="${param.memAdd2}" /></td>
+		</tr>
+		<tr>
+			<th>집전번</th>
+			<td><input type='text' name='memHometel' value="${param.memHometel}"/></td>
+		</tr>
+		<tr>
+			<th>회사전번</th>
+			<td><input type='text' name='memComtel' value="${param.memComtel}"/></td>
+		</tr>
+		<tr>
+			<th>휴대폰</th>
+			<td><input type='text' name='memHp' value="${param.memHp}"/></td>
+		</tr>
+		<tr>
+			<th>이메일</th>
+			<td><input type='text' required name='memMail' value="${param.memMail}"/></td>
+		</tr>
+		<tr>
+			<th>직업</th>
+			<td><input type='text' name='memJob' value="${param.memJob}"/></td>
+		</tr>
+		<tr>
+			<th>취미</th>
+			<td><input type='text' name='memLike' value="${param.memLike}"/></td>
+		</tr>
+		<tr>
+			<th>기념일</th>
+			<td><input type='text' name='memMemorial' value="${param.memMemorial}" /></td>
+		</tr>
+		<tr>
+			<th>기념일자</th>
+			<td><input type='date' name='memMemorialday'/></td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type='submit' value="전송" /></td>
+		</tr>
+	</table>
+</form>

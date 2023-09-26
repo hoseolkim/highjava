@@ -1,0 +1,19 @@
+/**
+ * 
+ */
+
+$(function(){
+	
+	$('tbody>tr').on('click',function(){
+		
+		
+		
+		
+		let settings = {
+			
+		}
+		
+		
+	})
+	
+})

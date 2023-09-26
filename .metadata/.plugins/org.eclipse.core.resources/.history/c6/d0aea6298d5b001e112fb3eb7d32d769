@@ -1,0 +1,14 @@
+package kr.or.ddit.vo;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(of = "code")
+public class MemoVO {
+	private Integer code;
+	private String writer;
+	private String email;
+	private String wrdate;
+	private String content;
+}

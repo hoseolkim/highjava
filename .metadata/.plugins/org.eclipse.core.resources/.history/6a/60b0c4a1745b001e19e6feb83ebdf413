@@ -1,0 +1,69 @@
+package kr.or.ddit.member.controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import kr.or.ddit.vo.MemberVO;
+
+@WebServlet("/member/memberInsert.do")
+public class MemberInsertControllerServlet extends HttpServlet {
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String viewName = "/member/memberInsert.tiles";
+		req.getRequestDispatcher(viewName).forward(req, resp);
+	}
+	
+	private MemberVO validate(HttpServletRequest req) {
+		MemberVO vo = null;
+		
+		String memId = req.getParameter("memId");
+		String memPass = req.getParameter("memPass");
+		String memName = req.getParameter("memName");
+		String memRegno1 = req.getParameter("memRegno1");
+		String memRegno2 = req.getParameter("memRegno2");
+		String memBir = req.getParameter("memBir");
+		String memZip = req.getParameter("memZip");
+		String memAdd1 = req.getParameter("memAdd1");
+		String memAdd2 = req.getParameter("memAdd2");
+		String memHometel = req.getParameter("memHometel");
+		String memComtel = req.getParameter("memComtel");
+		String memHp = req.getParameter("memHp");
+		String memMail = req.getParameter("memMail");
+		String memJob = req.getParameter("memJob");
+		String memLike = req.getParameter("memLike");
+		String memMemorial = req.getParameter("memMemorial");
+		String memMemorialday = req.getParameter("memMemorialday");
+		
+		
+		
+		
+		
+		return vo;
+	}
+	
+	
+	
+	
+	
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+//		/member/memberInsert
+	}
+}
