@@ -17,12 +17,12 @@ import kr.or.ddit.vo.MemberVO;
 
 @WebServlet("/member/memberView.do")
 public class MemberViewControllerServlet extends HttpServlet{
-	MemberService service = new MemberServiceImpl();
+	private MemberService service = new MemberServiceImpl();
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		
-		String memId = req.getParameter("memId");
+		String memId = req.getParameter("who");
 		if(StringUtils.isBlank(memId)) {
 			resp.sendError(400, "잘못된 요청!!!!!");
 			return;

@@ -12,17 +12,17 @@
 		<tr>
 			<th>회원아이디</th>
 			<td><input type="text" name="memId" class="form-control"
-				required value="${member.memId}" /><span class="error">${errors.memId}</span></td>
+				 value="${member.memId}" /><span class="error">${errors.memId}</span></td>
 		</tr>
 		<tr>
 			<th>비밀번호</th>
 			<td><input type="text" name="memPass" class="form-control"
-				required  /><span class="error">${errors.memPass}</span></td>
+				  /><span class="error">${errors.memPass}</span></td>
 		</tr>
 		<tr>
 			<th>회원명</th>
 			<td><input type="text" name="memName" class="form-control"
-				required value="${member.memName}" /><span class="error">${errors.memName}</span></td>
+				 value="${member.memName}" /><span class="error">${errors.memName}</span></td>
 		</tr>
 		<tr>
 			<th>주민번호1</th>
@@ -42,17 +42,17 @@
 		<tr>
 			<th>우편번호</th>
 			<td><input type="text" name="memZip" class="form-control"
-				required value="${member.memZip}" /><span class="error">${errors.memZip}</span></td>
+				 value="${member.memZip}" /><span class="error">${errors.memZip}</span></td>
 		</tr>
 		<tr>
 			<th>주소1</th>
 			<td><input type="text" name="memAdd1" class="form-control"
-				required value="${member.memAdd1}" /><span class="error">${errors.memAdd1}</span></td>
+				 value="${member.memAdd1}" /><span class="error">${errors.memAdd1}</span></td>
 		</tr>
 		<tr>
 			<th>주소2</th>
 			<td><input type="text" name="memAdd2" class="form-control"
-				required value="${member.memAdd2}" /><span class="error">${errors.memAdd2}</span></td>
+				 value="${member.memAdd2}" /><span class="error">${errors.memAdd2}</span></td>
 		</tr>
 		<tr>
 			<th>집전번</th>
@@ -72,7 +72,7 @@
 		<tr>
 			<th>이메일</th>
 			<td><input type="text" name="memMail" class="form-control"
-				required value="${member.memMail}" /><span class="error">${errors.memMail}</span></td>
+				 value="${member.memMail}" /><span class="error">${errors.memMail}</span></td>
 		</tr>
 		<tr>
 			<th>직업</th>

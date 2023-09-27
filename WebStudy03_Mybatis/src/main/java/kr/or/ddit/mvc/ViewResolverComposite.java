@@ -37,7 +37,7 @@ public class ViewResolverComposite implements ViewResolver {
 					single.resolveView(viewName, req, resp);
 					break;
 				}catch(Exception e) {
-					System.err.println(e.getMessage());
+//					System.err.println(e.getMessage());
 					continue;
 				}
 			}
@@ -45,16 +45,3 @@ public class ViewResolverComposite implements ViewResolver {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

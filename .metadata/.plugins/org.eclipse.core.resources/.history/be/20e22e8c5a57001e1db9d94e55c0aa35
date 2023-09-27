@@ -1,7 +1,0 @@
-package kr.or.ddit.vo;
-
-import java.io.Serializable;
-
-public class MemberVO implements Serializable{
-	
-}

@@ -1,0 +1,22 @@
+package kr.or.ddit.utils;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+
+
+public class ValidationUtils {
+	private static Validator validator;
+	static {
+		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		validator = factory.getValidator();
+	}
+	
+	public static <T> boolean vlidate(T target, Map<String, List<String>> errors, Class<?>... groupHints) {
+		
+	}
+	
+}

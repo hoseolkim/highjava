@@ -8,7 +8,8 @@
 			MEMBER
 		WHERE
 			MEM_ID = #{memId}
-			AND MEM_PASS = #{memPass}
+			<!-- AND MEM_PASS = #{memPass} -->
+			AND MEM_DELETE IS NULL
 	</select>
 	
 	<select id="selectMemberList" resultType="MemberVO">
@@ -24,7 +25,22 @@
 	FROM
 		MEMBER
 	</select>
-	<select id="selectMember" parameterType="String" resultType="MemberVO">
+	
+	<resultMap type="MemberVO" id="memberMap" autoMapping="true">
+		<id property="memId" column="MEM_ID"/>
+		<collection property="prodSet" ofType="ProdVO" autoMapping="true">
+			<association property="lprod" autoMapping="true"></association>
+		</collection>
+	</resultMap>
+	<select id="selectMember" parameterType="String" resultMap="memberMap">
+	WITH CARTVIEW AS(
+		SELECT DISTINCT CART_MEMBER, CART_PROD
+		FROM CART
+	), PRODVIEW AS(
+		SELECT PROD.*
+			, LPROD_NM
+		FROM PROD INNER JOIN LPROD ON(PROD_LGU = LPROD_GU)
+	)
 	SELECT 
 	    MEM_ID,
 	    MEM_PASS,
@@ -43,8 +59,10 @@
 	    MEM_LIKE,
 	    MEM_MEMORIAL,
 	    MEM_MEMORIALDAY
+	    , PROD_ID, PROD_NAME, PROD_COST , PROD_PRICE, LPROD_NM
 	FROM
-		MEMBER
+		MEMBER LEFT OUTER JOIN CARTVIEW ON (MEM_ID = CART_MEMBER)
+				LEFT OUTER JOIN PRODVIEW ON (CART_PROD = PROD_ID)
 	WHERE
 		MEM_ID = #{memId}
 	</select>
@@ -109,21 +127,12 @@
 		WHERE
 			MEM_ID = #{memId}
 	</update>
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-	
+	<delete id="deleteMember" parameterType="String">
+		UPDATE
+			MEMBER
+		SET
+			MEM_DELETE = 'Y'
+		WHERE
+			MEM_ID = #{memId}
+	</delete>
 </mapper>

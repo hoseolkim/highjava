@@ -1,0 +1,43 @@
+package kr.or.ddit.validate;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import kr.or.ddit.vo.MemberVO;
+
+class HibernateValidatorTest {
+	private static Validator validator;
+	
+	@BeforeAll
+	static void beforeClass() {
+		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		validator = factory.getValidator();
+	}
+	
+	
+	
+	
+	
+	@Test
+	void test() {
+		MemberVO member = new MemberVO();
+		
+		Set<ConstraintViolation<MemberVO>> constraintViolations = validator.validate(member);
+		
+		
+		
+		
+		
+		
+	}
+
+}

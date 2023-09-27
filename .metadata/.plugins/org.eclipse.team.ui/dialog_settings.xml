@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="ConfigureProjectWizard">
-		<item key="selectedWizardId" value="org.eclipse.egit.ui.internal.sharing.SharingWizard"/>
+		<item key="selectedWizardId" value="org.eclipse.team.svn.ui.wizard.ShareProjectWizard"/>
+	</section>
+	<section name="SynchronizeViewSettings">
+		<item key="linkWithEditor" value="false"/>
+		<item key="lastactiveparticipant_id" value="org.eclipse.team.svn.ui.synchronize.update.SynchronizeModelParticipant"/>
+		<item key="lastactiveparticipant_sec_id" value="1695812181702"/>
+		<section name="org.eclipse.team.svn.ui.synchronize.update.SynchronizeModelParticipant.1695811633812">
+		</section>
+		<section name="org.eclipse.team.svn.ui.synchronize.update.SynchronizeModelParticipant.1695812181702">
+			<item key="org.eclipse.team.ui.activeModelProvider" value="org.eclipse.team.ui.activeModelProvider"/>
+		</section>
+	</section>
+	<section name="SynchronizeWizard">
+		<item key="org.eclipse.team.uiGlobalRefreshWizardSelectionPage.default_selection" value="org.eclipse.team.svn.ui.wizard.SynchronizeWizard"/>
+	</section>
+	<section name="SynchronizeResourceSelectionDialog">
 	</section>
 </section>

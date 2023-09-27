@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 
+import kr.or.ddit.common.enumpkg.ServiceResult;
 import kr.or.ddit.login.service.AuthenticateService;
 import kr.or.ddit.login.service.AuthenticateServiceImpl;
 import kr.or.ddit.mvc.ViewResolverComposite;
@@ -51,19 +52,27 @@ public class LoginProcessControllerServlet extends HttpServlet{
 		if(valid) {
 	//		4-1. 검증 통과
 	//			5-1. 인증 여부 판단
-				boolean authenticated = service.authenticate(inputData);
+				ServiceResult result = service.authenticate(inputData);
 				HttpSession session = req.getSession();
-				if(authenticated) {
-		//				6-1. 인증 성공
-		//					- 웰컴 페이지 이동
+				switch (result) {
+				case OK:
+					//				6-1. 인증 성공
+					//					- 웰컴 페이지 이동
 					viewName = "redirect:/";
 					session.setAttribute("authId", memId);
-				}else {
-		//				6-2. 인증 실패
-		//					- loginForm 으로 이동
+					break;
+				case INVALIDPASSWORD:
+					//				6-2. 인증 실패
+					//					- loginForm 으로 이동
 					viewName = "redirect:/login/loginForm.jsp";
-					session.setAttribute("message", "아이디나 비밀번호 오류");
-				} // if(authenticated) end
+					session.setAttribute("message", "비밀번호 오류");
+					break;
+				default:
+					viewName = "redirect:/login/loginForm.jsp";
+					session.setAttribute("message", "아직 가입하지 않았거나 이미 탈퇴한 회원");
+					break;
+				}
+				
 		}else {
 	//		4-2. 검증 불통과
 	//			5-2. Bad request 전송

@@ -4,9 +4,9 @@
 
 $(function(){
 	let cPath = $(document.body).data('contextPath');
-	$('tbody>tr').on('click',function(){
+	$('tr[data-mem-id]').on('click',function(){
 		let memId = $(this).data('memId');
-		$.ajax(`${cPath}/member/memberView.do?memId=${memId}`)
+		$.ajax(`${cPath}/member/memberView.do?who=${memId}`)
 			.done((resp)=>{
 				$(memberDetailModal).modal('show');
 				$(memberDetailArea).html(resp);

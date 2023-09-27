@@ -1,0 +1,56 @@
+package kr.or.ddit.validate;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import kr.or.ddit.vo.MemberVO;
+
+class HibernateValidatorTest {
+	private static Validator validator;
+	
+	@BeforeAll
+	static void beforeClass() {
+		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		validator = factory.getValidator();
+	}
+	
+	
+	
+	
+	
+	@Test
+	void test() {
+		MemberVO member = new MemberVO();
+		member.setMemId("a001");
+		member.setMemPass("asdf");
+		member.setMemMail("asdasdasdasdasd");
+		member.setMemName("가나다라마바사아ㅇㅇㅇㅇㅇ");
+		
+		Set<ConstraintViolation<MemberVO>> constraintViolations = validator.validate(member);
+		
+		if(constraintViolations.isEmpty()) {
+			System.out.println("검증 통과");
+		}else {
+			constraintViolations.stream()
+				.forEach((cv)->{
+					String propName = cv.getPropertyPath().toString();
+					String message = cv.getMessage();
+					System.err.printf("%s : %s\n",propName,message);
+				});
+		}
+		
+		
+		
+		
+	}
+
+}

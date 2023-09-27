@@ -1,0 +1,30 @@
+package kr.or.ddit.validate;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+class HibernateValidatorTest {
+	private static Validator validator;
+	
+	@BeforeAll
+	static void beforeClass() {
+		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		validator = factory.getValidator();
+	}
+	
+	
+	
+	
+	
+	@Test
+	void test() {
+		fail("Not yet implemented");
+	}
+
+}

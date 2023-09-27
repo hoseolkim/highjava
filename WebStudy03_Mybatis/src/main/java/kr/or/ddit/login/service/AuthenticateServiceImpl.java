@@ -1,5 +1,6 @@
 package kr.or.ddit.login.service;
 
+import kr.or.ddit.common.enumpkg.ServiceResult;
 import kr.or.ddit.member.dao.MemberDAO;
 import kr.or.ddit.member.dao.MemberDAOImpl;
 import kr.or.ddit.vo.MemberVO;
@@ -8,9 +9,21 @@ public class AuthenticateServiceImpl implements AuthenticateService {
 	private MemberDAO memberDAO = new MemberDAOImpl();
 	
 	@Override
-	public boolean authenticate(MemberVO inputData) {
+	public ServiceResult authenticate(MemberVO inputData) {
 		MemberVO saved = memberDAO.selectMemberForAuth(inputData);
-		return saved!=null;
+		ServiceResult result = null;
+		
+		if(saved!=null) {
+			String inputPass = inputData.getMemPass();
+			String savedPass = saved.getMemPass();
+			if(inputPass.equals(savedPass)) {
+				result = ServiceResult.OK;
+			}else {
+				result = ServiceResult.INVALIDPASSWORD;
+			}
+		}else {
+			result = ServiceResult.NOTEXIST;
+		}
+		return result;
 	}
-
 }

@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+    <c:if test="${not empty message }">
+    	<script>
+    		alert("${message}");;
+    	</script>
+    	<c:remove var="message" scope="session" />
+    </c:if>
+    
 	<table class="table table-bordered">
 		<tr>
 			<th>회원아이디</th>
@@ -80,20 +88,35 @@
 		<tr>
 			<td colspan="2">
 				<a href="${pageContext.request.contextPath }/member/memberUpdate.do" class="btn btn-primary">수정</a>
-				<a href="${pageContext.request.contextPath }/member/memberDelete" class="btn btn-danger">탈퇴</a>
+				<a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">탈퇴</a>
 			</td>
 		</tr>
 	</table>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">회원 탈퇴</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+       <form id="delForm" action='<c:url value="/member/memberDelete.do"/>' method="post">
+	      <div class="modal-body">
+	        	<input type="password" name="password" class="form-control" />
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+	        <input type="submit" class="btn btn-primary" value="탈퇴하기">
+	      </div>
+       </form>
+    </div>
+  </div>
+</div>
+<script>
+	$(exampleModal).on('hidden.bs.modal',function(){
+		$(this).find('form')[0].reset();
+	});
+	$(delBtn).on('click',function(){
+		delForm.submit();
+	})
+</script>

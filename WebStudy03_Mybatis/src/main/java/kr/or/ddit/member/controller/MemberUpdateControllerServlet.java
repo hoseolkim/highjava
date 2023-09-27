@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.Temporal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -26,6 +27,8 @@ import kr.or.ddit.member.service.MemberServiceImpl;
 import kr.or.ddit.mvc.TilesViewResolver;
 import kr.or.ddit.mvc.ViewResolverComposite;
 import kr.or.ddit.utils.PopulateUtils;
+import kr.or.ddit.utils.ValidationUtils;
+import kr.or.ddit.validate.grouphint.UpdateGroup;
 import kr.or.ddit.vo.MemberVO;
 
 @WebServlet("/member/memberUpdate.do")
@@ -58,10 +61,10 @@ public class MemberUpdateControllerServlet extends HttpServlet{
 
 		PopulateUtils.populate(member, parameterMap);
 		
-		Map<String, String> errors = new HashMap<>();
+		Map<String, List<String>> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
 //		3. 검증 (대상 : MemberVO)
-		boolean valid = validate(member, errors);
+		boolean valid = ValidationUtils.validate(member, errors,UpdateGroup.class);
 		String viewName = null;
 		if(valid) {
 //			통과
@@ -94,48 +97,5 @@ public class MemberUpdateControllerServlet extends HttpServlet{
 
 		new ViewResolverComposite().resolveView(viewName, req, resp);
 	}
-
-	private boolean validate(MemberVO member, Map<String, String> errors) {
-		boolean valid = true;
-		if (StringUtils.isBlank(member.getMemId())) {
-			valid = false;
-			errors.put("memId", "회원아이디 누락");
-		}
-		if (StringUtils.isBlank(member.getMemPass())) {
-			valid = false;
-			errors.put("memPass", "비밀번호 누락");
-		}
-		if (StringUtils.isBlank(member.getMemName())) {
-			valid = false;
-			errors.put("memName", "회원명 누락");
-		}
-		if (StringUtils.isBlank(member.getMemZip())) {
-			valid = false;
-			errors.put("memZip", "우편번호 누락");
-		}
-		if (StringUtils.isBlank(member.getMemAdd1())) {
-			valid = false;
-			errors.put("memAdd1", "주소1 누락");
-		}
-		if (StringUtils.isBlank(member.getMemAdd2())) {
-			valid = false;
-			errors.put("memAdd2", "주소2 누락");
-		}
-		if (StringUtils.isBlank(member.getMemMail())) {
-			valid = false;
-			errors.put("memMail", "이메일 누락");
-		}
-		return valid;
-	}
 }
-
-
-
-
-
-
-
-
-
-
 
