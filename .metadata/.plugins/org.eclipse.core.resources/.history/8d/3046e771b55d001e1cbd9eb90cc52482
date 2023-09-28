@@ -1,0 +1,23 @@
+package kr.or.ddit.vo;
+
+import javax.validation.constraints.NotNull;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(of = "stdNo")
+public class StudentVO {
+	@NotNull
+	private String stdNo;
+	@NotNull
+	private String stdName;
+	@NotNull
+	private String stdId;
+	@NotNull
+	private String stdTelno;
+	@NotNull
+	private String stdAdd;
+	@NotNull
+	private String proCd;
+}

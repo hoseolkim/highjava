@@ -1,0 +1,33 @@
+package kr.or.ddit.actor.staff.service;
+
+import java.util.List;
+
+import kr.or.ddit.common.eunm.ServiceResult;
+import kr.or.ddit.vo.ProfessorVO;
+import kr.or.ddit.vo.StudentVO;
+import kr.or.ddit.vo.SubjectVO;
+
+public interface StaffService {
+	/**
+	 * 신규 과목 개설
+	 * @param subjectVO
+	 * @return 이미 있는 과목일 시 ALREADYDONE, 성공 시 OK, 실패 시 FAIL
+	 */
+	public ServiceResult createSubject(SubjectVO subjectVO);
+	/**
+	 * 전체 교수 목록 조회
+	 * @return List size로 판단
+	 */
+	public List<ProfessorVO> retrieveProfessorList();
+	/**
+	 * 교수 상세 정보 조회
+	 * @param proCd 없을 시 null 반환
+	 * @return
+	 */
+	public ProfessorVO retrieveProfessor(String proCd);
+	/**
+	 * 전체 학생목록 조회
+	 * @return List size로 판단
+	 */
+	public List<StudentVO> retrieveStudentList();
+}

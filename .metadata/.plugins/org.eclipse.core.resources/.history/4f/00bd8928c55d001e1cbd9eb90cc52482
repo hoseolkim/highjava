@@ -1,0 +1,35 @@
+package kr.or.ddit.actor.staff.service;
+
+import java.util.List;
+
+import kr.or.ddit.common.eunm.ServiceResult;
+import kr.or.ddit.vo.ProfessorVO;
+import kr.or.ddit.vo.StudentVO;
+import kr.or.ddit.vo.SubjectVO;
+
+public interface StaffService {
+	/**
+	 * 신규 과목 개설
+	 * @param subjectVO
+	 * @return 
+	 */
+	public ServiceResult createSubject(SubjectVO subjectVO);
+	/**
+	 * @return
+	 */
+	public List<ProfessorVO> retrieveProfessorList();
+	/**
+	 * @param proCd
+	 * @return
+	 */
+	public ProfessorVO retrieveProfessor(String proCd);
+	/**
+	 * @return
+	 */
+	public List<StudentVO> retrieveStudentList();
+	/**
+	 * @param stdNo
+	 * @return
+	 */
+	public StudentVO retrieveStudent(String stdNo);
+}

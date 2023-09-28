@@ -1,0 +1,12 @@
+package kr.or.ddit.actor.student.dao;
+
+import kr.or.ddit.vo.StudentVO;
+
+public interface StudentDAO {
+	/**
+	 * 학생 상세정보 조회
+	 * @param stdNo 
+	 * @return 없을 시 null 반환
+	 */
+	public StudentVO selectStudent(String stdNo);
+}

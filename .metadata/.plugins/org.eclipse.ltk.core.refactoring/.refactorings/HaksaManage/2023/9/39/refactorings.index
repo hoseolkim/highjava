@@ -1,0 +1,43 @@
+1695859984840	Delete element
+1695859999682	Copy file
+1695860007687	Delete element
+1695862554565	Rename package 'kr.or.ddit.common.db'
+1695862686029	Delete elements
+1695876911906	Rename compilation unit 'indexControllerServlet.java'
+1695877036567	Delete element
+1695877044096	Delete element
+1695877045190	Delete element
+1695877046447	Delete element
+1695877120912	Move compilation units
+1695877139203	Move compilation units
+1695877169797	Rename package 'kr.or.ddit.professor'
+1695877185433	Rename package 'kr.or.ddit.professor.controller'
+1695877197871	Rename package 'kr.or.ddit.professor.dao'
+1695877203802	Rename package 'kr.or.ddit.professor.service'
+1695877215189	Rename package 'kr.or.ddit.staff'
+1695877226419	Rename package 'kr.or.ddit.staff.controller'
+1695877230431	Rename package 'kr.or.ddit.staff.dao'
+1695877234913	Rename package 'kr.or.ddit.staff.service'
+1695877240548	Rename package 'kr.or.ddit.student'
+1695877246727	Rename package 'kr.or.ddit.student.controller'
+1695877250246	Rename package 'kr.or.ddit.student.dao'
+1695877253924	Rename package 'kr.or.ddit.student.service'
+1695883692055	Delete element
+1695885345944	Delete element
+1695888226575	Rename type 'StaffMainUIControllerServlet'
+1695888237819	Rename type 'StaffMainDataControllerServlet'
+1695897005522	Copy file
+1695897022970	Rename resource 'template.jsp'
+1695897042841	Rename resource 'template2.jsp'
+1695902367966	Delete element
+1695902374602	Rename resource 'professor_template.jsp'
+1695902804829	Rename resource 'member'
+1695903791844	Rename resource 'template_case1.jsp'
+1695904573630	Move 3 resources to 'includee'
+1695904582810	Copy folder
+1695904584621	Move 3 resources to 'includee'
+1695904586961	Move 3 resources to 'includee'
+1695904686092	Copy file
+1695904690608	Rename resource 'prof_main.jsp'
+1695904691884	Copy file
+1695904696008	Rename resource 'staff_main.jsp'

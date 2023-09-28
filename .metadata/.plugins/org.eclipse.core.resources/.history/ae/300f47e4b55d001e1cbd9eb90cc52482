@@ -1,0 +1,24 @@
+package kr.or.ddit.vo;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(of = "subCd")
+public class SubjectVO {
+	@NotNull
+	@Size(min = 8,max = 8)
+	private String subCd;
+	@NotNull
+	@Size(max = 30)
+	private String subName;
+	@NotNull
+	@Min(10)
+	@Max(1)
+	private Integer subGrade;
+}

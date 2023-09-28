@@ -1,0 +1,15 @@
+package kr.or.ddit.vo;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(of = {"proCd","subCd"})
+public class LectureVO {
+	private String proCd;
+	private String subCd;
+	private String lecTime;
+	private String lecRoom;
+	private Integer lecPerson;
+	private String lecWeek;
+}

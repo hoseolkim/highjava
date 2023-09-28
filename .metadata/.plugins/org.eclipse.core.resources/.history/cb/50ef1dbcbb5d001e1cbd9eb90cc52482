@@ -1,0 +1,27 @@
+package kr.or.ddit.actor;
+
+import java.time.LocalDate;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(of = {"cnsDate","stdNo","proCd"})
+public class CounselVO {
+	@NotNull
+	private LocalDate cnsDate;
+	@NotNull
+	@Size(min = 10, max = 10)
+	private String stdNo;
+	@NotNull
+	@Size(min = 5, max = 5)
+	private String proCd;
+	@NotNull
+	@Size(max = 1000)
+	private String cnsRemark;
+}

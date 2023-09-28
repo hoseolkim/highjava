@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<!-- Controller가 선택할 view 정보 :  /index.tiles -->
+	<definition template="/WEB-INF/views/template_case1.jsp" name="indexUI">
+		<put-attribute name="preScript" value="/includee/preScript.jsp" />
+		<put-attribute name="postScript" value="/includee/postScript.jsp" />
+	</definition>
+	<definition template="/WEB-INF/views/template_case1.jsp" name="studentMainUI">
+		<put-attribute name="preScript" value="/includee/preScript.jsp" />
+		<put-attribute name="postScript" value="/includee/postScript.jsp" />
+	</definition>
+	<definition name="index" extends="indexUI" >
+		<put-attribute name="content" value="/WEB-INF/views/index.jsp" />
+	</definition>
+	
+	<definition name="studentMain" extends="abstractDef">
+		<put-attribute name="content" value="/WEB-INF/views/adrs/adrsView.jsp" />
+	</definition>
+</tiles-definitions>

@@ -1,0 +1,10 @@
+package kr.or.ddit.common.eunm;
+
+/**
+ * 인증이 없으니까 원래 boolean으로 구현해도 되지만..
+ * 차후를 위해 Enum을 쓰는 연습을 해봅시다
+ */
+public enum LoginResult {
+	OK
+	, NOTEXIST
+}

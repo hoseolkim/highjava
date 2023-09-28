@@ -1,0 +1,16 @@
+package kr.or.ddit.vo;
+
+import java.time.LocalDate;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(of = {"cnsDate","stdNo","proCd"})
+public class CounselVO {
+	
+	private LocalDate cnsDate;
+	private String stdNo;
+	private String proCd;
+	private String cnsRemark;
+}

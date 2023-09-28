@@ -1,0 +1,16 @@
+package kr.or.ddit.actor.staff.dao;
+
+import kr.or.ddit.vo.SubjectVO;
+
+public interface StaffDAO {
+	/**
+	 * 개설할 수 있는 과목 추가
+	 * @param subjectVO
+	 * @return 성공 시 ( >=1)
+	 */
+	public int insertSubject(SubjectVO subjectVO);
+//	selectProfessorList
+//	selectProfessor
+//	selectStudentList
+//	selectStudent
+}

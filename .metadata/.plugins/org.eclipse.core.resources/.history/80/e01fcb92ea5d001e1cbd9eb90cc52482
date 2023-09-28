@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<!-- IndexUI Parent Teplate -->
+	<definition template="/WEB-INF/views/template_case1.jsp" name="indexUI">
+		<put-attribute name="preScript" value="/includee/preScript.jsp" />
+		<put-attribute name="postScript" value="/includee/postScript.jsp" />
+	</definition>
+	<!-- StudentUI Parent Teplate -->
+	<definition template="/WEB-INF/views/student_template.jsp" name="studentUI">
+		<put-attribute name="preScript" value="/includee/preScript.jsp" />
+		<put-attribute name="postScript" value="/includee/postScript.jsp" />
+	</definition>
+	<!-- Professor Parent Teplate -->
+	<definition template="/WEB-INF/views/professor_template.jsp" name="professorUI">
+		<put-attribute name="preScript" value="/includee/preScript.jsp" />
+		<put-attribute name="postScript" value="/includee/postScript.jsp" />
+	</definition>
+	<!-- Staff Parent Teplate -->
+	<definition template="/WEB-INF/views/staff_template.jsp" name="staffUI">
+		<put-attribute name="preScript" value="/includee/preScript.jsp" />
+		<put-attribute name="postScript" value="/includee/postScript.jsp" />
+	</definition>
+	<definition name="index" extends="indexUI" >
+		<put-attribute name="content" value="/WEB-INF/views/index.jsp" />
+	</definition>
+	
+	<!-- 학생 UI -->
+	<definition name="studentMain" extends="studentUI">
+		<put-attribute name="content" value="/WEB-INF/views/adrs/adrsView.jsp" />
+	</definition>
+	
+	<!-- 교수 UI -->
+	<definition name="professorMain" extends="studentUI">
+		<put-attribute name="content" value="/WEB-INF/views/adrs/adrsView.jsp" />
+	</definition>
+</tiles-definitions>

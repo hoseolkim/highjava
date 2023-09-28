@@ -1,0 +1,39 @@
+package kr.or.ddit.vo;
+
+import java.util.Set;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(of = "stdNo")
+public class StudentVO {
+	@NotNull
+	@Size(min = 10 , max = 10)
+	private String stdNo;
+	@NotNull
+	@Size(max = 10)
+	private String stdName;
+	@NotNull
+	@Pattern(regexp = "\\d{6}-\\d{7}")
+	private String stdId;
+	@NotNull
+	@Pattern(regexp = "010-\\d{3,4}-\\d{4}")
+	private String stdTelno;
+	@NotNull
+	@Size(max = 25)
+	private String stdAdd;
+	@NotNull
+	@Size(min = 5 , max = 5)
+	private String proCd;
+	
+	// 1:1 관계
+	private ProfessorVO proVO;
+	
+	// 1:N 관계
+	private Set<ClassVO> classSet;
+}

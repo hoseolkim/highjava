@@ -1,0 +1,42 @@
+package kr.or.ddit.vo;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import javax.validation.groups.Default;
+
+import kr.or.ddit.validate.grouphint.DeleteGroup;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(of = "lecCd")
+public class LectureVO {
+	@NotBlank(groups = {Default.class,DeleteGroup.class})
+	@Size(max = 30,groups = {Default.class,DeleteGroup.class})
+	private String lecCd;
+	@NotBlank
+	@Size(min = 5, max = 5)
+	private String proCd;
+	@NotBlank
+	@Size(min = 8, max = 8)
+	private String subCd;
+	@NotBlank
+	@Pattern(regexp = "\\d{4}-\\d{4}")
+	private String lecTime;
+	@NotBlank
+	@Size(max = 10)
+	private String lecRoom;
+	@NotBlank
+	@Min(10)
+	@Max(100)
+	private Integer lecPerson;
+	@Size(max = 1)
+	private String lecWeek;
+	
+	// 1:1 관계
+	private ProfessorVO professorVO;
+	private SubjectVO sebjectVO;
+}

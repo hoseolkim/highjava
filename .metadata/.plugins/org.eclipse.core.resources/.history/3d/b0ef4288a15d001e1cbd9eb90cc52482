@@ -1,0 +1,15 @@
+package kr.or.ddit.vo;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(of = "proCd")
+public class ProfessorVO {
+	
+	private String proCd;
+	private String proName;
+	private String proMajor;
+	private String proDeptno;
+	private String proTelno;
+}

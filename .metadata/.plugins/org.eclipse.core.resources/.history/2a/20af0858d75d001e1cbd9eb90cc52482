@@ -1,0 +1,9 @@
+package kr.or.ddit.actor.professor.dao;
+
+import java.util.List;
+
+import kr.or.ddit.vo.LectureVO;
+
+public interface ProfessorDAO {
+	List<LectureVO> selectLectureList(String proCd);
+}

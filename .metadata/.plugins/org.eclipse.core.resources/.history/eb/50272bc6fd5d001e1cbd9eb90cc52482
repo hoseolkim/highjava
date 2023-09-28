@@ -1,0 +1,72 @@
+package kr.or.ddit.login.controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.lang3.StringUtils;
+
+import kr.or.ddit.common.eunm.ServiceResult;
+import kr.or.ddit.login.service.LoginService;
+import kr.or.ddit.login.service.LoginServiceImpl;
+import kr.or.ddit.mvc.ViewResolverComposite;
+import kr.or.ddit.vo.ProfessorVO;
+import kr.or.ddit.vo.StudentVO;
+
+@WebServlet("/login")
+public class LoginProcessControllerServlet extends HttpServlet{
+	private LoginService service = new LoginServiceImpl();
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
+		
+		// 로그인 폼 입력란 name = id
+		String id = req.getParameter("id");
+		String viewName = null;
+		viewName = "index";
+		boolean valid = StringUtils.isNotBlank(id);
+		if(valid) {
+			if(id.equals("admin")) {
+				viewName = "staffMain";
+			}else if(id.length()==5) {
+				// 교수코드일 경우
+				ProfessorVO professorVO = new ProfessorVO();
+				professorVO.setProCd(id);
+				ServiceResult result = service.professorLogin(professorVO);
+				if(result == ServiceResult.OK) {
+					// 로그인 성공시
+					HttpSession session = req.getSession();
+					session.setAttribute("loginId", id);
+					viewName = "professorMain";
+				}else {
+					viewName = "index";
+				}
+			}else if(id.length()==10) {
+				// 학번일 경우
+				StudentVO studentVO = new StudentVO();
+				studentVO.setStdNo(id);
+				ServiceResult result = service.studentLogin(studentVO);
+				if(result == ServiceResult.OK) {
+					HttpSession session = req.getSession();
+					session.setAttribute("loginId", id);
+					// 로그인 성공시
+					viewName = "studentMain";
+				}else {
+					viewName = "index";
+				}
+			}else {
+				// 그 외 아이디를 잘못 입력한 경우
+				viewName = "index";
+			}
+		}
+		
+		
+		new ViewResolverComposite().resolveView(viewName, req, resp);
+		
+	}
+}
