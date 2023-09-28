@@ -23,8 +23,6 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="kr/or/ddit/mybatis/mapper/Member.xml" />
-		<mapper resource="kr/or/ddit/mybatis/mapper/Address.xml" />
-		<mapper resource="kr/or/ddit/mybatis/mapper/DataBaseProperty.xml" />
+	<!-- 맵퍼 등록 위치 -->
 	</mappers>
 </configuration>

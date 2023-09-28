@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.or.ddit.mvc.ViewResolverComposite;
 
 @WebServlet("/index.do")
-public class IndexControllerServlet extends HttpServlet{
+public class indexControllerServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String title = "컨트롤러에서 만든 Model 타이틀";

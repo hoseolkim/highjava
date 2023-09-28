@@ -40,7 +40,7 @@
 	    <version>2.2</version>
 	    <scope>provided</scope>
 	</dependency>
-	<!--  -->
+	<!-- JSP Tag Library 지원 -->
 	<dependency>
 		<groupId>javax.servlet</groupId>
 		<artifactId>jstl</artifactId>

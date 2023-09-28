@@ -2,14 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>    
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>뭐야 이거 무서워..</title>
 <tiles:insertAttribute name="preScript"/>
 </head>
 <body data-context-path="${pageContext.request.contextPath }">
-<h4>Tile layout---</h4>
 <main>
 	<tiles:insertAttribute name="content"/>
 </main>
